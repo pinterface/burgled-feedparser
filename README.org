@@ -6,9 +6,9 @@ Parser using the burgled-batteries library.
 * Synopsis
 
 #+begin_src lisp
-(asdf:load-system "burgled-feedparser")
-(burgled-feedparser:parse "http://pinterface.livejournal.com/data/atom")
-; => #<HASH-TABLE>
+  (asdf:load-system "burgled-feedparser")
+  (burgled-feedparser:parse "http://pinterface.livejournal.com/data/atom")
+  ; => #<HASH-TABLE>
 #+end_src
 
 * Why burgled-feedparser
