@@ -25,33 +25,6 @@
 
 (define-feedparser-var "USER_AGENT" *user-agent*)
 
-(defmacro define-hash-reader (hash-name lisp-name)
-  (let ((parts (split-sequence #\. hash-name)))
-    (labels ((%gethash (parts form)
-               (if (rest parts)
-                 (%gethash (rest parts) `(gethash ,(first parts) ,form (make-hash-table)))
-                 `(gethash ,(first parts) ,form))))
-      `(defun ,lisp-name (ob)
-         ,(%gethash parts 'ob)))))
-
-;; Hrm...
-(define-hash-reader "feed" feed)
-(define-hash-reader "feed.title" feed.title)
-(define-hash-reader "feed.title_detail" feed.title-detail)
-(define-hash-reader "feed.link" feed.link)
-(define-hash-reader "feed.links" feed.links)
-(define-hash-reader "feed.subtitle" feed.subtitle)
-(define-hash-reader "feed.icon" feed.icon)
-
-(define-hash-reader "entries" entries)
-
-(define-hash-reader "title" title)
-(define-hash-reader "link" link)
-(define-hash-reader "links" links)
-(define-hash-reader "summary" summary)
-(define-hash-reader "content" content)
-
-;; Better!
 (defun access (object &rest parts)
   "A generic reader function for accessing arrays, hash tables, and lists,
 as well as the Python versions of those things.  This function will attempt
