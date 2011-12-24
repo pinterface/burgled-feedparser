@@ -1,0 +1,38 @@
+#+TITLE: burgled-feedparser: Python's Universal Feed Parser, from Common Lisp
+
+burgled-feedparser provides a Common Lisp interface to Python's Universal Feed
+Parser using the burgled-batteries library.
+
+* Synopsis
+
+#+begin_src lisp
+(asdf:load-system "burgled-feedparser")
+(burgled-feedparser:parse "http://pinterface.livejournal.com/data/atom")
+; => #<HASH-TABLE>
+#+end_src
+
+* Why burgled-feedparser
+
+I like Common Lisp better than Python.  Python, on the other hand, has the
+defacto library for parsing feeds.  Rather than tackle the immense job of
+attempting to port it and any dependencies which don't current exist in CL; or
+writing some code in Python which outputs into a specific format that then must
+be parsed on the Lisp side; it seemed best to simply integrate the Python
+library into the CL image itself.
+
+Basically, why port what you can subsume?
+
+* Public API
+
+burgled-feedparser has four exported symbols.
+
+ * PARSE :: The Python function =feedparser.parse()=.  This translates CPython
+            pointers into Lisp objects as per BURGLED-BATTERIES.
+ * PARSE* :: The same as #'PARSE, except it does /not/ do pointer translation.
+ * *USER-AGENT* :: The variable =feedparser.USER_AGENT=.
+ * ACCESS :: A general reader to make extracting values from nested structures
+             easier.  (Probably belongs in burgled-batteries.)
+
+* To Do
+ * time struct support (requires work on burgled-batteries)
+ * more advanced feedparser options (HTML cleaner settings, etc.)
