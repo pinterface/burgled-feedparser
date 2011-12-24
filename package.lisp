@@ -6,8 +6,6 @@
                 #:defpyfun)
   (:import-from #:alexandria
                 #:symbolicate)
-  (:import-from #:split-sequence
-                #:split-sequence)
   (:export #:parse
            #:parse*
            #:*user-agent*
